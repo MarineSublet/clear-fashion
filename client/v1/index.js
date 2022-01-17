@@ -31,12 +31,9 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 1. Create a new variable and assign it the link of the cheapest t-shirt
 // I can find on these e-shops
 // 2. Log the variable
-
-console.log('🎯 TODO: The cheapest t-shirt');
-console.log('https://adresse.paris/t-shirts-et-polos/4238-t-shirt-ranelagh-1300000262026.html');
-
-
-
+let cheapest_tshirt_link='https://adresse.paris/t-shirts-et-polos/4238-t-shirt-ranelagh-1300000262026.html';
+console.log('🎯 TODO 1: The cheapest t-shirt');
+console.log(cheapest_tshirt_link);
 
 
 /**
@@ -51,6 +48,10 @@ console.log('https://adresse.paris/t-shirts-et-polos/4238-t-shirt-ranelagh-13000
 // 🎯 TODO: Number of products
 // 1. Create a variable and assign it the number of products
 // 2. Log the variable
+
+console.log('🎯 TODO 2: Number of products')
+let NumberProducts=marketplace.length;
+console.log(NumberProducts);
 
 
 // 🎯 TODO: Brands name
