@@ -31,7 +31,7 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // 1. Create a new variable and assign it the link of the cheapest t-shirt
 // I can find on these e-shops
 // 2. Log the variable
-let cheapest_tshirt_link='https://adresse.paris/t-shirts-et-polos/4238-t-shirt-ranelagh-1300000262026.html';
+var cheapest_tshirt_link='https://adresse.paris/t-shirts-et-polos/4238-t-shirt-ranelagh-1300000262026.html';
 console.log('🎯 TODO 1: The cheapest t-shirt');
 console.log(cheapest_tshirt_link);
 
@@ -50,7 +50,7 @@ console.log(cheapest_tshirt_link);
 // 2. Log the variable
 
 console.log('🎯 TODO 2: Number of products')
-let NumberProducts=marketplace.length;
+var NumberProducts=marketplace.length;
 console.log(NumberProducts);
 
 
@@ -58,6 +58,15 @@ console.log(NumberProducts);
 // 1. Create a variable and assign it the list of brands name only
 // 2. Log the variable
 // 3. Log how many brands we have
+var brands=[];
+console.log('🎯 TODO 3: Brands name')
+for (let step=0;step<marketplace.length;step++)
+{
+  brands.push(marketplace[step].brand)
+}
+brands=[ ... new Set(brands)]
+console.log(brands)
+console.log(brands.length)
 
 
 // 🎯 TODO: Sort by price
