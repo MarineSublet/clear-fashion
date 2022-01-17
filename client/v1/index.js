@@ -32,6 +32,9 @@ console.log(MY_FAVORITE_BRANDS[0]);
 // I can find on these e-shops
 // 2. Log the variable
 
+console.log('🎯 TODO: The cheapest t-shirt');
+console.log('https://adresse.paris/t-shirts-et-polos/4238-t-shirt-ranelagh-1300000262026.html');
+
 
 
 
