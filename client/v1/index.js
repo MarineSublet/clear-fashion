@@ -107,6 +107,13 @@ console.log(products100_50);
 // 1. Determine the average basket of the marketplace
 // 2. Log the average
 
+console.log('🎯 TODO: Average Basket');
+var moy=0;
+for (let i=0;i<marketplace.length;i++)
+{
+  moy+=parseInt(marketplace[i].price);
+}
+console.log(moy/NumberProducts);
 
 
 
