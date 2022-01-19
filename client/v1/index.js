@@ -322,6 +322,7 @@ DeleteProduct('b56c6d88-749a-5b4c-b571-e5b5c6483131')
 console.log(COTELE_PARIS);
 
 // 🎯 TODO: Save the favorite product
+console.log('🎯 TODO: Save the favorite product')
 let blueJacket = {
   'link': 'https://coteleparis.com/collections/tous-les-produits-cotele/products/la-veste-bleu-roi',
   'price': 110,
@@ -330,13 +331,15 @@ let blueJacket = {
 
 // we make a copy of blueJacket to jacket
 // and set a new property `favorite` to true
-let jacket = blueJacket;
+//let jacket = blueJacket;
 
-jacket.favorite = true;
+//jacket.favorite = true;
 
 // 1. Log `blueJacket` and `jacket` variables
+//console.log(blueJacket)
+//console.log(jacket)
 // 2. What do you notice?
-
+console.log('Both have favorite set to true')
 blueJacket = {
   'link': 'https://coteleparis.com/collections/tous-les-produits-cotele/products/la-veste-bleu-roi',
   'price': 110,
@@ -344,8 +347,10 @@ blueJacket = {
 };
 
 // 3. Update `jacket` property with `favorite` to true WITHOUT changing blueJacket properties
-
-
+var jacket = Object.assign({}, blueJacket)
+jacket.favorite = true;
+console.log(blueJacket)
+console.log(jacket)
 
 
 
