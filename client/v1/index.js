@@ -116,8 +116,6 @@ for (let i=0;i<marketplace.length;i++)
 console.log(moy/NumberProducts);
 
 
-
-
 /**
  * 🏎
  * We are almost done with the `marketplace` variable
@@ -141,10 +139,29 @@ console.log(moy/NumberProducts);
 // 2. Log the variable
 // 3. Log the number of products by brands
 
+console.log('🎯 TODO: Products by brands')
+var const_brands={};
+for (var i=0; i<brands.length; i++)
+{
+  const_brands[brands[i]]=[];
+}
+for (var i=0; i<marketplace.length; i++)
+{
+  const_brands[marketplace[i].brand].push(marketplace[i])
+}
+console.log(const_brands);
+
+console.log('Number of products by brands')
+for (let i=0;i<brands.length;i++)
+{console.log(brands[i] + " : "+const_brands[(brands[i])].length)}
 
 // 🎯 TODO: Sort by price for each brand
 // 1. For each brand, sort the products by price, from highest to lowest
 // 2. Log the sort
+console.log('🎯 TODO: Sort by price for each brand')
+for (let i=0;i<brands.length;i++)
+{const_brands[(brands[i])]=const_brands[(brands[i])].sort((a,b) => (a.price>b.price)?1:-1);}
+console.log(const_brands);
 
 
 // 🎯 TODO: Sort by date for each brand
