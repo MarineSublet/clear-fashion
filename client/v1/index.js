@@ -284,13 +284,19 @@ for (let i=0;i<COTELE_PARIS.length;i++)
 {const diffTime = Math.abs(Date.parse(date) - Date.parse(COTELE_PARIS[i].released));
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   if(diffDays<=14) return true;
-else {return false}}}
+}return false}
 console.log(newrelease());
 
 
 // 🎯 TODO: Reasonable price
 // // 1. Log if coteleparis is a reasonable price shop (true or false)
 // // A reasonable price if all the products are less than 100€
+console.log('🎯 TODO: Reasonable price')
+function reasonable(){
+  for (let i=0;i<COTELE_PARIS.length;i++)
+  {if(COTELE_PARIS[i].price>100) return false;
+  }return true}
+  console.log(reasonable());
 
 
 // 🎯 TODO: Find a specific product
