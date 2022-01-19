@@ -296,13 +296,18 @@ function reasonable(){
   for (let i=0;i<COTELE_PARIS.length;i++)
   {if(COTELE_PARIS[i].price>100) return false;
   }return true}
-  console.log(reasonable());
+console.log(reasonable());
 
 
 // 🎯 TODO: Find a specific product
 // 1. Find the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
 // 2. Log the product
-
+console.log('🎯 TODO: Find a specific product')
+function findProduct(uuid){
+  for (let i=0;i<COTELE_PARIS.length;i++)
+  {if(COTELE_PARIS[i].uuid==uuid) console.log(COTELE_PARIS[i]);
+  }}
+findProduct('b56c6d88-749a-5b4c-b571-e5b5c6483131')
 
 // 🎯 TODO: Delete a specific product
 // 1. Delete the product with the uuid `b56c6d88-749a-5b4c-b571-e5b5c6483131`
