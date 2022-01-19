@@ -276,6 +276,16 @@ const COTELE_PARIS = [
 // 🎯 TODO: New released products
 // // 1. Log if we have new products only (true or false)
 // // A new product is a product `released` less than 2 weeks.
+console.log('🎯 TODO: New released products');
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+function newrelease(){
+for (let i=0;i<COTELE_PARIS.length;i++)
+{const diffTime = Math.abs(Date.parse(date) - Date.parse(COTELE_PARIS[i].released));
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  if(diffDays<=14) return true;
+else {return false}}}
+console.log(newrelease());
 
 
 // 🎯 TODO: Reasonable price
