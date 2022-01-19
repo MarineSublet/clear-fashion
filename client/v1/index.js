@@ -160,15 +160,17 @@ for (let i=0;i<brands.length;i++)
 // 2. Log the sort
 console.log('🎯 TODO: Sort by price for each brand')
 for (let i=0;i<brands.length;i++)
-{const_brands[(brands[i])]=const_brands[(brands[i])].sort((a,b) => (a.price>b.price)?1:-1);}
+{const_brands[(brands[i])]=const_brands[(brands[i])].sort((a,b) => (a.price<b.price)?1:-1);}
 console.log(const_brands);
 
 
 // 🎯 TODO: Sort by date for each brand
 // 1. For each brand, sort the products by date, from old to recent
 // 2. Log the sort
-
-
+console.log('🎯 TODO: Sort by date for each brand')
+for (let i=0;i<brands.length;i++)
+{const_brands[(brands[i])]=const_brands[(brands[i])].sort((a,b) => (Date.parse(a.date)<Date.parse(b.date))?1:-1);}
+console.log(const_brands);
 
 
 
@@ -182,10 +184,26 @@ console.log(const_brands);
 // 🎯 TODO: Compute the p90 price value
 // 1. Compute the p90 price value of each brand
 // The p90 value (90th percentile) is the lower value expected to be exceeded in 90% of the products
+console.log("🎯 TODO: Compute the p90 price value")
 
+function percentile(arr, p) {
+  if (arr.length === 0) return 0;
+  if (typeof p !== 'number') throw new TypeError('p must be a number');
+  if (p <= 0) return arr[0];
+  if (p >= 1) return arr[arr.length - 1];
+  var index = (arr.length - 1) * p,
+      lower = Math.floor(index),
+      upper = lower + 1,
+      weight = index % 1;
 
+  if (upper >= arr.length) 
+  return arr[lower].price;
+  return arr[lower].price * (1 - weight) + arr[upper].price * weight;
+}
 
-
+for (let i=0;i<brands.length;i++)
+{const_brands[(brands[i])]=const_brands[(brands[i])].sort((a,b) => (a.price<b.price)?1:-1);
+  console.log(brands[i]+ " : "+ percentile(const_brands[(brands[i])],0.9))}
 
 /**
  * 🧥
