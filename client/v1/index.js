@@ -103,8 +103,8 @@ var products100_50 = marketplace.filter(function(goodprice) {
 console.log(products100_50);
 
 
-// 🎯 TODO: Average Basket
-// 1. Determine the average basket of the marketplace
+// 🎯 TODO: Average price
+// 1. Determine the average price of the marketplace
 // 2. Log the average
 
 console.log('🎯 TODO: Average Basket');
