@@ -94,47 +94,20 @@ const renderPagination = pagination => {
   selectPage.selectedIndex = currentPage - 1;
 };
 
-/**
- * Render brand selector
- * @param  {Object} brand
- */
- const renderBrands = brand => {
-  const brandstot = brand;
-  //console.log('length')
-  //console.log(brandstot[1])
-  const options = Array.from(
-    brandstot,
-    (brand) => `<option value="${brand}">${brand}</option>`
-  ).join('');
-  selectBrands.innerHTML = options;
-  //selectBrands.selectedIndex = currentPage - 1;
-};
-/**
- * Render brand selector
- * @param  {Object} const_brands
- * @param  {Object} selectedbrand
- */
- const renderBrands2 = const_brands => {
-  const fragment = document.createDocumentFragment();
-  const div = document.createElement('div');
-  console.log("const_selected")
-  console.log(selectedbrand)
-  const template = const_brands.selectedbrand
-  .map(product => {
-    return `
-    <div class="product" id=${product.uuid}>
-      <span>${product.brand}</span>
-      <a href="${product.link}">${product.name}</a>
-      <span>${product.price}</span>
-    </div>
-  `;
-  })
-  .join('');
-  div.innerHTML = template;
-  fragment.appendChild(div);
-  selectBrands.innerHTML = options;
-  selectBrands.selectedIndex = currentPage - 1;
-
+/** 
+*Render brand selector
+* @param  {Object} brand
+* @param  {Object} brandSelected
+*/
+const renderBrands = (brand,brandSelected) => {
+ //const brandstot = brand;
+ const options = Array.from(
+   brand,
+   (brand) =>`<option value="${brand}">${brand}</option>`
+ ).join('');
+ selectBrands.innerHTML = options;
+ console.log(brandSelected)
+ selectBrands.selectedIndex = brand.indexOf(brandSelected);
 };
 
 /**
@@ -146,34 +119,6 @@ const renderIndicators = pagination => {
 
   spanNbProducts.innerHTML = count;
 };
-const render = (products, pagination) => {
-  let brandstot=[]
-    for (let step=0;step<products.length;step++)
-    {
-       brandstot.push(products[step].brand);
-    }
-  brandstot=[ ... new Set(brandstot)]
-  //console.log('brandstot')
-  //console.log(brandstot)
-
-  var const_brands={};
-for (var i=0; i<products.length; i++)
-{
-  //console.log(products[i])
-  const_brands[products[i].brand]=[];
-}
-for (var i=0; i<products.length; i++)
-{
-  const_brands[products[i].brand].push(products[i])
-}
-//console.log('const_brands')
-//console.log(const_brands);
-
-  renderProducts(products);
-  renderPagination(pagination);
-  renderIndicators(pagination);
-  renderBrands(brandstot)
-}
 
 
 const render2 = (products, pagination,brandSelected) => {
@@ -194,7 +139,7 @@ for (var i=0; i<products.length; i++)
 {
   const_brands[products[i].brand].push(products[i])
 }
-if(brandSelected==null)
+if(brandSelected=="No brand selected")
 {
   renderProducts(products);
 }
@@ -204,23 +149,8 @@ else
 }
   renderPagination(pagination);
   renderIndicators(pagination);
-  renderBrands(brandstot)
+  renderBrands(brandstot,brandSelected)
 }
-
-
-/**
- * Declaration of all Listeners
- */
-
-/**
- * Select the number of products to display
- * @type {[type]}
- */
-selectShow.addEventListener('change', event => {
-  fetchProducts(currentPagination.currentPage,parseInt(event.target.value))
-    .then(setCurrentProducts)
-    .then(() => render(currentProducts, currentPagination));
-});
 
 
 
@@ -235,25 +165,25 @@ selectShow.addEventListener('change', event => {
 selectShow.addEventListener('change', event => {
   fetchProducts(currentPagination.currentPage, parseInt(event.target.value))
     .then(setCurrentProducts)
-    .then(() => render(currentProducts, currentPagination));
+    .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 });
 
 selectBrands.addEventListener('change', event => {
   fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,event.target.value));
-    console.log(currentProducts)
+    
 });
 
 
 selectPage.addEventListener('change', event => {
   fetchProducts( parseInt(event.target.value),currentPagination.pageSize)
     .then(setCurrentProducts)
-    .then(() => render(currentProducts, currentPagination));
+    .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 });
 
 document.addEventListener('DOMContentLoaded', () =>
   fetchProducts()
     .then(setCurrentProducts)
-    .then(() => render(currentProducts, currentPagination))
+    .then(() => render2(currentProducts, currentPagination,"No brand selected"))
 );
