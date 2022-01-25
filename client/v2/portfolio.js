@@ -11,6 +11,7 @@ const selectPage = document.querySelector('#page-select');
 const selectBrands = document.querySelector('#brand-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
+const buttonReleased = document.querySelector('Recently_Released')
 
 /**
  * Set global value
@@ -121,6 +122,21 @@ const renderIndicators = pagination => {
 };
 
 
+function newrelease(products){
+  const newProductRelease = [];
+  for (var i=0; i<products.length; i++)
+  {
+    if((Math.abs(Date.now()-Date.parse(products[i].released))/(1000 * 60 * 60 * 24))<14)
+    {
+      newProductRelease.push(products[i]);
+    }
+  }
+  return newProductRelease;
+}
+
+
+
+
 const render2 = (products, pagination,brandSelected) => {
   let brandstot=['No brand selected'];
     for (let step=0;step<products.length;step++)
@@ -139,6 +155,10 @@ for (var i=0; i<products.length; i++)
 {
   const_brands[products[i].brand].push(products[i])
 }
+console.log("buttonrel")
+console.log(buttonrel)
+if (buttonrel===true){products=newrelease(products)
+  renderProducts(products);}
 if(brandSelected=="No brand selected")
 {
   renderProducts(products);
@@ -181,6 +201,19 @@ selectPage.addEventListener('change', event => {
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 });
+
+var buttonrel=false;
+function changeboolrel()
+{ if (buttonrel==false){buttonrel=true}
+else buttonrel=false;
+console.log(buttonrel)
+{
+  fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
+    .then(setCurrentProducts)
+    .then(() => render2(currentProducts, currentPagination,"No brand selected"));
+};}
+
+//buttonReleased.addEventListener('click',buttonrel=true)
 
 document.addEventListener('DOMContentLoaded', () =>
   fetchProducts()
