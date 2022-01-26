@@ -142,10 +142,15 @@ function reasonable(products){
   }
 return reasonable}
 
-function sortbyprice(products){
+function sortbypriceDesc(products){
 products=products.sort((a,b) => (a.price<b.price)?1:-1);
 return products;
 }
+
+function sortbypriceAsc(products){
+  products=products.sort((a,b) => (a.price>b.price)?1:-1);
+  return products;
+  }
 
 const render2 = (products, pagination,brandSelected) => {
   let brandstot=['No brand selected'];
@@ -212,11 +217,16 @@ selectPage.addEventListener('change', event => {
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 });
 
-selectSort.addEventListener('change', event => {
-  fetchProducts( parseInt(event.target.value),parseInt(selectShow.value))
+selectSort.addEventListener('change', event => { if (event.target.value=="price-desc")
+  {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
     .then(setCurrentProducts)
-    .then(() => render2(sortbyprice(currentProducts), currentPagination,"No brand selected"));
-console.log(sortbyprice(currentProducts))});
+    .then(() => render2(sortbypriceDesc(currentProducts), currentPagination,"No brand selected"));} 
+    else if (event.target.value=="price-asc")
+    {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
+      .then(setCurrentProducts)
+      .then(() => render2(sortbypriceAsc(currentProducts), currentPagination,"No brand selected"));}
+console.log(event.target.value);
+});
 
 var buttonrel=false;
 function changeboolrel()
