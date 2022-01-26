@@ -12,6 +12,7 @@ const selectBrands = document.querySelector('#brand-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
 const buttonReleased = document.querySelector('Recently_Released')
+const selectSort = document.querySelector('#sort-select')
 
 /**
  * Set global value
@@ -141,6 +142,10 @@ function reasonable(products){
   }
 return reasonable}
 
+function sortbyprice(products){
+products=products.sort((a,b) => (a.price<b.price)?1:-1);
+return products;
+}
 
 const render2 = (products, pagination,brandSelected) => {
   let brandstot=['No brand selected'];
@@ -194,7 +199,7 @@ selectShow.addEventListener('change', event => {
 });
 
 selectBrands.addEventListener('change', event => {
-  fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
+  fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,event.target.value));
     
@@ -202,17 +207,23 @@ selectBrands.addEventListener('change', event => {
 
 
 selectPage.addEventListener('change', event => {
-  fetchProducts( parseInt(event.target.value),currentPagination.pageSize)
+  fetchProducts( parseInt(event.target.value),parseInt(selectShow.value))
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 });
+
+selectSort.addEventListener('change', event => {
+  fetchProducts( parseInt(event.target.value),parseInt(selectShow.value))
+    .then(setCurrentProducts)
+    .then(() => render2(sortbyprice(currentProducts), currentPagination,"No brand selected"));
+console.log(sortbyprice(currentProducts))});
 
 var buttonrel=false;
 function changeboolrel()
 { if (buttonrel==false){buttonrel=true}
 else buttonrel=false;
 {
-  fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
+  fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 };}
@@ -222,11 +233,10 @@ function changeboolreasonable()
 { if (buttonreasonable==false){buttonreasonable=true}
 else buttonreasonable=false;
 {
-  fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
+  fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 };}
-
 
 
 document.addEventListener('DOMContentLoaded', () =>
