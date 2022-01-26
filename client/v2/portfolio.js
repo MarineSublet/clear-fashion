@@ -11,8 +11,11 @@ const selectPage = document.querySelector('#page-select');
 const selectBrands = document.querySelector('#brand-select');
 const sectionProducts = document.querySelector('#products');
 const spanNbProducts = document.querySelector('#nbProducts');
-const buttonReleased = document.querySelector('Recently_Released')
+const spanNbNewProducts = document.querySelector('#nbNewProducts');
 const selectSort = document.querySelector('#sort-select')
+const span50 = document.querySelector('#p50')
+const span90 = document.querySelector('#p90')
+const span95= document.querySelector('#p95')
 
 /**
  * Set global value
@@ -118,10 +121,19 @@ const renderBrands = (brand,brandSelected) => {
  */
 const renderIndicators = pagination => {
   const {count} = pagination;
-
+//console.log(count)
   spanNbProducts.innerHTML = count;
 };
 
+/**
+ * Render new products selector
+ * @param  {Object} paginationnew
+ */
+ const renderIndicatorsNew = paginationnew => {
+  const countnew = paginationnew.length;
+  //console.log(paginationnew)
+  spanNbNewProducts.innerHTML = countnew;
+};
 
 function newrelease(products){
   const newProductRelease = [];
@@ -191,9 +203,11 @@ else
 {
   renderProducts(const_brands[brandSelected]);
 }
+  //console.log(pagination)
   renderPagination(pagination);
   renderIndicators(pagination);
-  renderBrands(brandstot,brandSelected)
+  renderIndicatorsNew(newrelease(products));
+  renderBrands(brandstot,brandSelected);
 }
 
 
