@@ -59,7 +59,7 @@ const fetchProducts = async (page = 1, size = 12) => {
 const renderProducts = products => {
   const fragment = document.createDocumentFragment();
   const div = document.createElement('div');
-  console.log(products)
+  //console.log(products)
   const template = products
     .map(product => {
       return `
@@ -107,7 +107,7 @@ const renderBrands = (brand,brandSelected) => {
    (brand) =>`<option value="${brand}">${brand}</option>`
  ).join('');
  selectBrands.innerHTML = options;
- console.log(brandSelected)
+ //console.log(brandSelected)
  selectBrands.selectedIndex = brand.indexOf(brandSelected);
 };
 
@@ -134,7 +134,12 @@ function newrelease(products){
   return newProductRelease;
 }
 
-
+function reasonable(products){
+  const reasonable=[];
+  for (let i=0;i<products.length;i++)
+  {if(products[i].price<50) reasonable.push(products[i]);;
+  }
+return reasonable}
 
 
 const render2 = (products, pagination,brandSelected) => {
@@ -155,10 +160,10 @@ for (var i=0; i<products.length; i++)
 {
   const_brands[products[i].brand].push(products[i])
 }
-console.log("buttonrel")
-console.log(buttonrel)
 if (buttonrel===true){products=newrelease(products)
   renderProducts(products);}
+if (buttonreasonable===true){products=reasonable(products)
+    renderProducts(products);}
 if(brandSelected=="No brand selected")
 {
   renderProducts(products);
@@ -206,14 +211,23 @@ var buttonrel=false;
 function changeboolrel()
 { if (buttonrel==false){buttonrel=true}
 else buttonrel=false;
-console.log(buttonrel)
 {
   fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 };}
 
-//buttonReleased.addEventListener('click',buttonrel=true)
+var buttonreasonable=false;
+function changeboolreasonable()
+{ if (buttonreasonable==false){buttonreasonable=true}
+else buttonreasonable=false;
+{
+  fetchProducts(currentPagination.currentPage, currentPagination.pageSize)
+    .then(setCurrentProducts)
+    .then(() => render2(currentProducts, currentPagination,"No brand selected"));
+};}
+
+
 
 document.addEventListener('DOMContentLoaded', () =>
   fetchProducts()
