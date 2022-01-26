@@ -152,6 +152,15 @@ function sortbypriceAsc(products){
   return products;
   }
 
+function sortbydateDesc(products){
+    products=products.sort((a,b) => (Date.parse(a.released)<Date.parse(b.released))?1:-1);
+    return products;
+    }
+function sortbydateAsc(products){
+    products=products.sort((a,b) => (Date.parse(a.released)>Date.parse(b.released))?1:-1);
+    return products;
+    }
+
 const render2 = (products, pagination,brandSelected) => {
   let brandstot=['No brand selected'];
     for (let step=0;step<products.length;step++)
@@ -225,7 +234,15 @@ selectSort.addEventListener('change', event => { if (event.target.value=="price-
     {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
       .then(setCurrentProducts)
       .then(() => render2(sortbypriceAsc(currentProducts), currentPagination,"No brand selected"));}
-console.log(event.target.value);
+      else {if (event.target.value=="date-asc")
+      {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
+        .then(setCurrentProducts)
+        .then(() => render2(sortbydateAsc(currentProducts), currentPagination,"No brand selected"));}
+      else //(event.target.value=="date-desc")
+        {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
+          .then(setCurrentProducts)
+          .then(() => render2(sortbydateDesc(currentProducts), currentPagination,"No brand selected"));}
+console.log(event.target.value);}
 });
 
 var buttonrel=false;
