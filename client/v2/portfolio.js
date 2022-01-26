@@ -135,6 +135,57 @@ const renderIndicators = pagination => {
   spanNbNewProducts.innerHTML = countnew;
 };
 
+function percentile(arr, p) {
+  if (arr.length === 0) return 0;
+  if (p <= 0) return arr[0];
+  if (p >= 1) return arr[arr.length - 1];
+  var index = (arr.length - 1) * p,
+      lower = Math.floor(index),
+      upper = lower + 1,
+      weight = index % 1;
+
+  if (upper >= arr.length) 
+  return arr[lower].price;
+  return arr[lower].price * (1 - weight) + arr[upper].price * weight;
+}
+
+
+/**
+ * Render p50 indicator
+ * @param  {Object} p50
+ */
+ const renderIndicatorsp50 = p50 => {
+  
+  p50=p50.sort((a,b) => (a.price<b.price)?1:-1);
+  const count50 = percentile(p50,0.5)
+//console.log(count50)
+  span50.innerHTML = count50;
+};
+
+/**
+ * Render p90 indicator
+ * @param  {Object} p90
+ */
+ const renderIndicatorsp90 = p90 => {
+  
+  p90=p90.sort((a,b) => (a.price<b.price)?1:-1);
+  const count90 = percentile(p90,0.9)
+//console.log(count50)
+  span90.innerHTML = count90;
+};
+
+/**
+ * Render p95 indicator
+ * @param  {Object} p90
+ */
+ const renderIndicatorsp95 = p95 => {
+  
+  p95=p95.sort((a,b) => (a.price<b.price)?1:-1);
+  const count95 = percentile(p95,0.95)
+//console.log(count50)
+  span95.innerHTML = count95;
+};
+
 function newrelease(products){
   const newProductRelease = [];
   for (var i=0; i<products.length; i++)
@@ -208,6 +259,9 @@ else
   renderIndicators(pagination);
   renderIndicatorsNew(newrelease(products));
   renderBrands(brandstot,brandSelected);
+  renderIndicatorsp50(products);
+  renderIndicatorsp90(products);
+  renderIndicatorsp95(products);
 }
 
 
