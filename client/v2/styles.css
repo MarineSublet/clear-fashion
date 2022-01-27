@@ -1,0 +1,88 @@
+body {
+    color: #414141;               /* Dark gray */
+    background-color: #a8eba8;    /* Light green */
+  }
+h2 {
+    font-size: 28px;
+  }
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica", "Arial", sans-serif;
+  }
+  h1{
+    text-align: center;
+    color: #ffffff;       
+    background-color: #43a037;
+    font-size: 38px;
+    margin: 10px auto;
+    padding: 7px;
+  }
+
+  h1, section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 10px; 
+    /*border: 1px solid #5D6063;*/
+  }
+
+
+  .indicators {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    
+  }
+
+  .options {
+    padding-top: 10px;
+    padding-bottom: 0px;
+  }
+
+  .products {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+
+ .buttonfilter{
+    color: #FFF;
+    background-color: #43a037;    /* green */
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 2px solid #5D6063;    /* Dark gray */
+    border-radius: 6px;
+  
+    width: 200px;
+    margin: 10px auto;
+  }
+
+  .buttonfilter2{
+    color: rgb(3, 0, 0);
+    font-size: 20px;
+    background-color: #ebcce9;   /* green */
+    font-weight: bold;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 2px solid #5D6063;    /* Dark gray */
+    border-radius: 6px;
+    width: 40px;
+    margin: 10px;
+  }
+  
+  .selector {
+    color: rgb(255, 255, 255);
+    background-color: #43a037;     /* green */
+    font-weight: bold;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid #5D6063;    /* Dark gray */
+    border-radius: 6px;
+    
+    margin: 10px ;
+  }

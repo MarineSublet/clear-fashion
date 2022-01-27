@@ -80,8 +80,8 @@ const renderProducts = products => {
       <div class="product" id=${product.uuid}>
         <span>${product.brand}</span>
         <a href="${product.link}">${product.name}</a>
-        <span>${product.price}</span>
-        <button onclick=favourite("${product.uuid}")>favourite</button>
+        <span>${product.price}€</span>
+        <button class='buttonfilter2' onclick=favourite("${product.uuid}")>♥</button>
       </div>
     `;
     })
@@ -295,7 +295,7 @@ if(brandSelected!="No brand selected")
   //renderProducts(const_brands[brandSelected]);
 }
 
-
+  //console.log(pagination)
   renderPagination(pagination);
   renderIndicators(pagination);
   renderIndicatorsNew(newrelease(products));

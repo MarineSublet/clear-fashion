@@ -3,34 +3,34 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>👕 Clear Fahion | Environmentally & human-friendly clothes</title>
+    <link rel='stylesheet' href='styles.css'/>
   </head>
   <body>
     <h1>Clear fashion</h1>
     <section id="options">
       <div id="show">
         <label for="show-select">Show:</label>
-        <select name="show" id="show-select">
+        <select class='selector s4' name="show" id="show-select">
           <option value="12">12</option>
           <option value="24">24</option>
           <option value="48">48</option>
         </select>
-      </div>
-      <div id="page">
         <label for="page-select">Go to page:</label>
-        <select name="page" id="page-select"> </select>
+        <select class='selector s1' name="page" id="page-select"> </select>
       </div>
+
       <div id="filters">
-        <button onclick=changeboolreasonable()>By reasonable price</button>
-        <button onclick=changeboolrel()>By recently released</button>
-        <button onclick=filterfavourite()>By favourite</button>
+        <button class='buttonfilter call-to-action1' onclick=changeboolreasonable()>By reasonable price</button>
+        <button class='buttonfilter call-to-action2' onclick=changeboolrel()>By recently released</button>
+        <button class='buttonfilter call-to-action3' onclick=filterfavourite()>By favourite</button>
         <div id="brand">
           <label for="brand-select">By brands:</label>
-          <select name="brand" id="brand-select"> </select>
+          <select class='selector s2' name="brand" id="brand-select"> </select>
         </div>
       </div>
       <div id="sort">
         <label for="sort-select">Sort:</label>
-        <select name="sort" id="sort-select">
+        <select class='selector s3' name="sort" id="sort-select">
           <option value="no-select">No selection</option>
           <option value="price-asc">Cheaper</option>
           <option value="price-desc">Expensive</option>
@@ -39,7 +39,7 @@
         </select>
       </div>
     </section>
-    <section id="indicators">
+    <section class='indicators' id="indicators">
       <h2>Indicators</h2>
       <div>
         <span>Number of products</span>
@@ -66,7 +66,7 @@
         <span id="last_released_date">0</span>
       </div>
     </section>
-    <section id="products"></section>
+    <section class="products" id="products"></section>
     <script type="text/javascript" charset="UTF-8" src="portfolio.js"></script>
   </body>
 </html>
