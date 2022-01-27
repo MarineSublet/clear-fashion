@@ -1,6 +1,8 @@
 body {
     color: #414141;               /* Dark gray */
-    background-color: #a8eba8;    /* Light green */
+    background-color: #90f7b3;    /* Light green */
+
+    
   }
 h2 {
     font-size: 28px;
@@ -30,20 +32,66 @@ h1, h2, h3, h4, h5, h6 {
   .indicators {
     padding-top: 0px;
     padding-bottom: 0px;
+    float: left;                  /* Add this */
+    width: 250px;
+    height: 0px;   
+      
     
   }
 
-  .options {
-    padding-top: 10px;
+  #options {
+    padding-top: 10px; 
     padding-bottom: 0px;
+    float: left; 
+    width: 950px;   
+    height: 150px;    
   }
 
   .products {
+    clear: both; 
     padding-top: 0px;
     padding-bottom: 0px;
+    overflow: hidden;  
   }
 
- .buttonfilter{
+  .product{
+    overflow: hidden;
+    float: left;
+  width: 31%;
+  margin: 25px 1.15%;
+  height: 50px;
+  }
+
+  .selector {
+    color: rgb(255, 255, 255);
+    background-color: #43a037;     /* green */
+    font-weight: bold;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid #5D6063;    /* Dark gray */
+    border-radius: 6px;
+    
+    overflow: hidden;  
+    margin: 10px ;
+  }
+  .selector:hover,
+  .selector:visited:hover {
+    color: rgb(255, 255, 255);
+    background-color: #69cf5b;    /* green */
+    font-weight: bold;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 2px solid #5D6063;    /* Dark gray */
+    border-radius: 6px;
+    
+    margin: 10px ;
+  }
+
+  .buttonfilter,.buttonfilter:visited{
     color: #FFF;
     background-color: #43a037;    /* green */
     font-weight: bold;
@@ -58,10 +106,27 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px auto;
   }
 
+  .buttonfilter:hover,
+.buttonfilter:visited:hover {
+    color: #FFF;
+    background-color: #69cf5b;    /* green */
+    font-weight: bold;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 0px;
+    padding-right: 0px;
+    border: 2px solid #5D6063;    /* Dark gray */
+    border-radius: 6px;
+  
+    width: 200px;
+    margin: 10px auto;
+  }
+
+  
   .buttonfilter2{
     color: rgb(3, 0, 0);
     font-size: 20px;
-    background-color: #ebcce9;   /* green */
+    background-color: #f7daf5;   /* green */
     font-weight: bold;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -72,17 +137,21 @@ h1, h2, h3, h4, h5, h6 {
     width: 40px;
     margin: 10px;
   }
-  
-  .selector {
-    color: rgb(255, 255, 255);
-    background-color: #43a037;     /* green */
+
+  .buttonfilter2:hover,
+  .buttonfilter2:visited:hover {
+    color: rgb(3, 0, 0);
+    font-size: 20px;
+    background-color: #f7f0f6;   /* green */
     font-weight: bold;
-    padding-top: 7px;
-    padding-bottom: 7px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
     border: 2px solid #5D6063;    /* Dark gray */
     border-radius: 6px;
-    
-    margin: 10px ;
-  }
+    width: 40px;
+    margin: 10px;
+    }
+  
+

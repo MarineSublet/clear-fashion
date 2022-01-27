@@ -17,6 +17,16 @@
         </select>
         <label for="page-select">Go to page:</label>
         <select class='selector s1' name="page" id="page-select"> </select>
+        <label for="brand-select">By brands:</label>
+        <select class='selector s2' name="brand" id="brand-select"> </select>
+        <label for="sort-select">Sort:</label>
+      <select class='selector s3' name="sort" id="sort-select">
+        <option value="no-select">No selection</option>
+        <option value="price-asc">Cheaper</option>
+        <option value="price-desc">Expensive</option>
+        <option value="date-asc">Recently released</option>
+        <option value="date-desc">Anciently released</option>
+      </select>
       </div>
 
       <div id="filters">
@@ -24,19 +34,8 @@
         <button class='buttonfilter call-to-action2' onclick=changeboolrel()>By recently released</button>
         <button class='buttonfilter call-to-action3' onclick=filterfavourite()>By favourite</button>
         <div id="brand">
-          <label for="brand-select">By brands:</label>
-          <select class='selector s2' name="brand" id="brand-select"> </select>
+        
         </div>
-      </div>
-      <div id="sort">
-        <label for="sort-select">Sort:</label>
-        <select class='selector s3' name="sort" id="sort-select">
-          <option value="no-select">No selection</option>
-          <option value="price-asc">Cheaper</option>
-          <option value="price-desc">Expensive</option>
-          <option value="date-asc">Recently released</option>
-          <option value="date-desc">Anciently released</option>
-        </select>
       </div>
     </section>
     <section class='indicators' id="indicators">
