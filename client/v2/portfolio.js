@@ -259,6 +259,7 @@ if (buttonreasonable===true){products=reasonable(products)
   if (buttonfavourite===true)
 {
   favouriteuuid=[ ... new Set(favouriteuuid)]
+  favouritelist=[];
   favouriteuuid.forEach(element => {
     products.forEach(elemuuid=> {
       if (element==elemuuid.uuid)
@@ -287,34 +288,14 @@ for (var i=0; i<products.length; i++)
 {
 const_brands[products[i].brand].push(products[i])
 }
-if(brandSelected=="No brand selected")
-{
-  //renderProducts(products);
-}
-else
-{
-      for (let step=0;step<products.length;step++)
-    {
-       brandstot.push(products[step].brand);
-    }
-  brandstot=[ ... new Set(brandstot)]
 
-  var const_brands={};
-for (var i=0; i<products.length; i++)
+if(brandSelected!="No brand selected")
 {
-  //console.log(products[i])
-  const_brands[products[i].brand]=[];
-}
-for (var i=0; i<products.length; i++)
-{
-  const_brands[products[i].brand].push(products[i])
-}
   products=const_brands[brandSelected];
   //renderProducts(const_brands[brandSelected]);
 }
 
 
-  //console.log(pagination)
   renderPagination(pagination);
   renderIndicators(pagination);
   renderIndicatorsNew(newrelease(products));
