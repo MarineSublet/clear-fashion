@@ -4,6 +4,8 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
+let favouriteuuid =[];
+let favouritelist=[];
 
 // inititiqte selectors
 const selectShow = document.querySelector('#show-select');
@@ -57,11 +59,18 @@ const fetchProducts = async (page = 1, size = 12) => {
     return {currentProducts, currentPagination};
   }
 };
+
+
+function favourite(uuidtxt)
+    {favouriteuuid.push(uuidtxt);
+    console.log(favouriteuuid)}
+
 /**
  * Render list of products
  * @param  {Array} products
  */
 const renderProducts = products => {
+  
   const fragment = document.createDocumentFragment();
   const div = document.createElement('div');
   //console.log(products)
@@ -72,11 +81,12 @@ const renderProducts = products => {
         <span>${product.brand}</span>
         <a href="${product.link}">${product.name}</a>
         <span>${product.price}</span>
+        <button onclick=favourite("${product.uuid}")>favourite</button>
       </div>
     `;
     })
     .join('');
-
+    
   div.innerHTML = template;
   fragment.appendChild(div);
   sectionProducts.innerHTML = '<h2>Products</h2>';
@@ -239,7 +249,51 @@ function sortbydateAsc(products){
 
 const render2 = (products, pagination,brandSelected) => {
   let brandstot=['No brand selected'];
-    for (let step=0;step<products.length;step++)
+
+if (buttonrel===true){products=newrelease(products)
+  //renderProducts(products);
+}
+if (buttonreasonable===true){products=reasonable(products)
+    //renderProducts(products);
+  }
+  if (buttonfavourite===true)
+{
+  favouriteuuid=[ ... new Set(favouriteuuid)]
+  favouriteuuid.forEach(element => {
+    products.forEach(elemuuid=> {
+      if (element==elemuuid.uuid)
+      {favouritelist.push(elemuuid);}
+    })  
+  });
+  favouritelist=[ ... new Set(favouritelist)]
+  console.log(favouritelist)
+  console.log(favouriteuuid)
+  products=favouritelist;
+  //renderProducts(products);
+}
+for (let step=0;step<products.length;step++)
+{
+   brandstot.push(products[step].brand);
+}
+brandstot=[ ... new Set(brandstot)]
+
+var const_brands={};
+for (var i=0; i<products.length; i++)
+{
+//console.log(products[i])
+const_brands[products[i].brand]=[];
+}
+for (var i=0; i<products.length; i++)
+{
+const_brands[products[i].brand].push(products[i])
+}
+if(brandSelected=="No brand selected")
+{
+  //renderProducts(products);
+}
+else
+{
+      for (let step=0;step<products.length;step++)
     {
        brandstot.push(products[step].brand);
     }
@@ -255,22 +309,16 @@ for (var i=0; i<products.length; i++)
 {
   const_brands[products[i].brand].push(products[i])
 }
-if (buttonrel===true){products=newrelease(products)
-  renderProducts(products);}
-if (buttonreasonable===true){products=reasonable(products)
-    renderProducts(products);}
-if(brandSelected=="No brand selected")
-{
-  renderProducts(products);
+  products=const_brands[brandSelected];
+  //renderProducts(const_brands[brandSelected]);
 }
-else
-{
-  renderProducts(const_brands[brandSelected]);
-}
+
+
   //console.log(pagination)
   renderPagination(pagination);
   renderIndicators(pagination);
   renderIndicatorsNew(newrelease(products));
+  renderProducts(products);
   renderBrands(brandstot,brandSelected);
   renderIndicatorsp50(products);
   renderIndicatorsp90(products);
@@ -320,11 +368,16 @@ selectSort.addEventListener('change', event => { if (event.target.value=="price-
       {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
         .then(setCurrentProducts)
         .then(() => render2(sortbydateAsc(currentProducts), currentPagination,"No brand selected"));}
-      else //(event.target.value=="date-desc")
+      else {if(event.target.value=="date-desc")
         {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
           .then(setCurrentProducts)
           .then(() => render2(sortbydateDesc(currentProducts), currentPagination,"No brand selected"));}
-console.log(event.target.value);}
+          else {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
+            .then(setCurrentProducts)
+            .then(() => render2(currentProducts, currentPagination,"No brand selected"));}
+//console.log(event.target.value);}
+}}
+
 });
 
 var buttonrel=false;
@@ -347,9 +400,20 @@ else buttonreasonable=false;
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 };}
 
+var buttonfavourite=false
+function filterfavourite()
+{ if (buttonfavourite==false){buttonfavourite=true}
+else buttonfavourite=false;
+{
+  fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
+    .then(setCurrentProducts)
+    .then(() => render2(currentProducts, currentPagination,"No brand selected"));
+};}
+
 
 document.addEventListener('DOMContentLoaded', () =>
   fetchProducts()
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,"No brand selected"))
+    
 );
