@@ -6,6 +6,7 @@ body {
   }
 h2 {
     font-size: 28px;
+    text-align: center;
   }
 h1, h2, h3, h4, h5, h6 {
     font-family: "Helvetica", "Arial", sans-serif;
@@ -29,14 +30,11 @@ h1, h2, h3, h4, h5, h6 {
   }
 
 
-  .indicators {
-    padding-top: 0px;
+  #indicators {
+    padding-top: 15px;
     padding-bottom: 0px;
     float: left;                  /* Add this */
-    width: 250px;
-    height: 0px;   
-      
-    
+    width: 250px; 
   }
 
   #options {
@@ -44,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-bottom: 0px;
     float: left; 
     width: 950px;   
-    height: 150px;    
+    height: 130px;    
   }
 
   .products {
@@ -95,15 +93,15 @@ h1, h2, h3, h4, h5, h6 {
     color: #FFF;
     background-color: #43a037;    /* green */
     font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     padding-left: 0px;
     padding-right: 0px;
     border: 2px solid #5D6063;    /* Dark gray */
     border-radius: 6px;
   
     width: 200px;
-    margin: 10px auto;
+    margin: 10px;
   }
 
   .buttonfilter:hover,
@@ -111,22 +109,22 @@ h1, h2, h3, h4, h5, h6 {
     color: #FFF;
     background-color: #69cf5b;    /* green */
     font-weight: bold;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     padding-left: 0px;
     padding-right: 0px;
     border: 2px solid #5D6063;    /* Dark gray */
     border-radius: 6px;
   
     width: 200px;
-    margin: 10px auto;
+    margin: 10px;
   }
 
   
   .buttonfilter2{
     color: rgb(3, 0, 0);
     font-size: 20px;
-    background-color: #f7daf5;   /* green */
+    background-color: #f7daf5;   
     font-weight: bold;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -154,4 +152,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 10px;
     }
   
+    #p50,#p90,#p95,#nbProducts,#nbNewProducts,#last_released_date 
+    {
+      font-weight:bold;
+    }
 

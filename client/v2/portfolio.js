@@ -79,7 +79,7 @@ const renderProducts = products => {
       return `
       <div class="product" id=${product.uuid}>
         <span>${product.brand}</span>
-        <a href="${product.link}">${product.name}</a>
+        <a href="${product.link}" target="_blank">${product.name}</a>
         <span>${product.price}€</span>
         <button class='buttonfilter2' onclick=favourite("${product.uuid}")>♥</button>
       </div>
@@ -348,11 +348,11 @@ selectSort.addEventListener('change', event => { if (event.target.value=="price-
       else {if (event.target.value=="date-asc")
       {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
         .then(setCurrentProducts)
-        .then(() => render2(sortbydateAsc(currentProducts), currentPagination,"No brand selected"));}
+        .then(() => render2(sortbydateDesc(currentProducts), currentPagination,"No brand selected"));}
       else {if(event.target.value=="date-desc")
         {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
           .then(setCurrentProducts)
-          .then(() => render2(sortbydateDesc(currentProducts), currentPagination,"No brand selected"));}
+          .then(() => render2(sortbydateAsc(currentProducts), currentPagination,"No brand selected"));}
           else {fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
             .then(setCurrentProducts)
             .then(() => render2(currentProducts, currentPagination,"No brand selected"));}
