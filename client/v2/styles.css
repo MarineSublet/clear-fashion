@@ -1,6 +1,6 @@
 body {
     color: #414141;               /* Dark gray */
-    background-color: #90f7b3;    /* Light green */
+    background-color: #eecba3;    /* Light green #90f7b3*/
 
     
   }
@@ -13,8 +13,8 @@ h1, h2, h3, h4, h5, h6 {
   }
   h1{
     text-align: center;
-    color: #ffffff;       
-    background-color: #43a037;
+    color: #050505;       
+    background-color: #e0a96d; /*43a037*/
     font-size: 38px;
     margin: 10px auto;
     padding: 7px;
@@ -61,8 +61,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .selector {
-    color: rgb(255, 255, 255);
-    background-color: #43a037;     /* green */
+    color: rgb(0, 0, 0);
+    background-color: #e0a96d;     /* green */
     font-weight: bold;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -76,8 +76,8 @@ h1, h2, h3, h4, h5, h6 {
   }
   .selector:hover,
   .selector:visited:hover {
-    color: rgb(255, 255, 255);
-    background-color: #69cf5b;    /* green */
+    color: rgb(0, 0, 0);
+    background-color: #dbb48b;    /* green */
     font-weight: bold;
     padding-top: 7px;
     padding-bottom: 7px;
@@ -90,8 +90,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 
   .buttonfilter,.buttonfilter:visited{
-    color: #FFF;
-    background-color: #43a037;    /* green */
+    color: rgb(3, 3, 3);
+    background-color: #e0a96d;    /* green */
     font-weight: bold;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -106,8 +106,8 @@ h1, h2, h3, h4, h5, h6 {
 
   .buttonfilter:hover,
 .buttonfilter:visited:hover {
-    color: #FFF;
-    background-color: #69cf5b;    /* green */
+    color: rgb(0, 0, 0);
+    background-color: #dbb48b;    /* green */
     font-weight: bold;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -140,7 +140,7 @@ h1, h2, h3, h4, h5, h6 {
   .buttonfilter2:visited:hover {
     color: rgb(3, 0, 0);
     font-size: 20px;
-    background-color: #f7f0f6;   /* green */
+    background-color: #e0a96d;   /* green */
     font-weight: bold;
     padding-top: 0px;
     padding-bottom: 0px;
