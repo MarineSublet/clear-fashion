@@ -30,8 +30,7 @@ const parse = data => {
           .trim()
           .replace(/\s/g, ' '),
         'photo': $(element)
-          .find('.productList-image img')
-          .attr('src'),
+          .find('.productList-image img').attr('data-src'),
         '_id': uuidv5(link, uuidv5.URL)
       };
     })
@@ -49,7 +48,6 @@ module.exports.scrape = async url => {
 
     if (response.ok) {
       const body = await response.text();
-
       return parse(body);
     }
 

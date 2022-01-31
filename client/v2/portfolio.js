@@ -7,7 +7,7 @@ let currentPagination = {};
 let favouriteuuid =[];
 let favouritelist=[];
 
-// inititiqte selectors
+// instantiate the selectors
 const selectShow = document.querySelector('#show-select');
 const selectPage = document.querySelector('#page-select');
 const selectBrands = document.querySelector('#brand-select');
@@ -315,8 +315,8 @@ if(brandSelected!="No brand selected")
 
 /**
  * Select the number of products to display
- * @type {[type]}
  */
+
 selectShow.addEventListener('change', event => {
   fetchProducts(currentPagination.currentPage, parseInt(event.target.value))
     .then(setCurrentProducts)
@@ -398,3 +398,17 @@ document.addEventListener('DOMContentLoaded', () =>
     .then(() => render2(currentProducts, currentPagination,"No brand selected"))
     
 );
+
+selectShow.addEventListener('change', async (event) => {
+  const products = await fetchProducts(currentPagination.currentPage, parseInt(event.target.value));
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+  const products = await fetchProducts();
+
+  setCurrentProducts(products);
+  render(currentProducts, currentPagination);
+});

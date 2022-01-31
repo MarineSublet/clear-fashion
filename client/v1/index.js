@@ -201,9 +201,11 @@ function percentile(arr, p) {
   return arr[lower].price * (1 - weight) + arr[upper].price * weight;
 }
 
+
 for (let i=0;i<brands.length;i++)
 {const_brands[(brands[i])]=const_brands[(brands[i])].sort((a,b) => (a.price<b.price)?1:-1);
   console.log(brands[i]+ " : "+ percentile(const_brands[(brands[i])],0.9))}
+
 
 /**
  * 🧥
