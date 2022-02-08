@@ -10,27 +10,27 @@ const {'v5': uuidv5} = require('uuid');
 const parse = data => {
   const $ = cheerio.load(data);
 
-  return $('.productList-container .productList')
+  return $('data-new-gr-c-s-check-loaded')
     .map((i, element) => {
-      const link = `https://www.dedicatedbrand.com${$(element)
-        .find('.product-image')
-        .attr('href')}`;
-      console.log(link)
+      const link = `https://www.dedicatedbrand.com/en/loadfilter?category=men?${$(element)
+        .find('body')
+        .attr('word-wrap: break-word; white-space: pre-wrap;')}`;
+        
       return {
         link,
-        'brand': 'montlimart',
+        'brand': 'dedicated',
         'price': parseInt(
           $(element)
             .find('.productList-price')
             .text()
         ),
         'name': $(element)
-          .find('.product-info .price-box .regular-price .price')
+          .find('.productList-title')
           .text()
           .trim()
           .replace(/\s/g, ' '),
         'photo': $(element)
-          .find('img').attr('data-src'),
+          .find('.productList-image img').attr('data-src'),
         '_id': uuidv5(link, uuidv5.URL)
       };
     })
@@ -47,8 +47,21 @@ module.exports.scrape = async url => {
     const response = await fetch(url);
 
     if (response.ok) {
-      const body = await response.text();
-      return parse(body);
+      const body = await response.json();
+      let final = [];
+        body.products.forEach((element) => {
+            if(element.name!=undefined)
+      {final.push({
+        name: element["name"],
+        brand: "dedicated",
+        price: parseFloat(element["price"].price),
+        image: element["image"][0],
+        link: "https://www.dedicatedbrand.com/en/" + element["canonicalUri"],
+      })};
+    });
+    //console.log(final);
+      //return body.products;
+      return final;
     }
 
     console.error(response);
