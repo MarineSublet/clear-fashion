@@ -52,11 +52,13 @@ module.exports.scrape = async url => {
         body.products.forEach((element) => {
             if(element.name!=undefined)
       {final.push({
-        name: element["name"],
+        link: "https://www.dedicatedbrand.com/en/" + element["canonicalUri"],
         brand: "dedicated",
         price: parseFloat(element["price"].price),
-        image: element["image"][0],
-        link: "https://www.dedicatedbrand.com/en/" + element["canonicalUri"],
+        name: element["name"],
+        photo: element["image"][0],
+        _id: uuidv5("https://www.dedicatedbrand.com/en/" + element["canonicalUri"], uuidv5.URL),
+        
       })};
     });
     //console.log(final);

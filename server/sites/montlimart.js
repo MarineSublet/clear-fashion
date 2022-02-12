@@ -10,9 +10,9 @@ const {'v5': uuidv5} = require('uuid');
 const parse = data => {
   const $ = cheerio.load(data);
 
-  return $('.item')
+  return $('.product-name')
     .map((i, element) => {
-      const link = $(element)
+      const link = $(element).parent()
         .find('.product-name a')
         .attr('href');
         
@@ -20,14 +20,14 @@ const parse = data => {
         link,
         'brand': 'montlimart',
         'price':parseFloat( 
-          $(element)
+          $(element).parent()
             .find('.price').text())
         ,
-        'name': $(element)
+        'name': $(element).parent()
           .find('.product-name a')
         .attr('title'),
 
-        'photo': $(element)
+        'photo': $(element).parent().parent()
           .find('.product-image a img').attr('src'),
         '_id': uuidv5(link, uuidv5.URL)
       };
