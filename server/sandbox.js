@@ -4,6 +4,7 @@ const dedicatedbrand = require('./sites/dedicatedbrand');
 const dedicated_all = require('./sites/dedicated_all');
 const montlimart = require('./sites/montlimart');
 const adresse_paris = require('./sites/adresse_paris');
+const fs = require('fs');
 
 //eshop = 'https://www.dedicatedbrand.com/en/loadfilter'
 //'https://adresse.paris/630-toute-la-collection?p=1'
@@ -54,8 +55,15 @@ async function sandbox () {
       console.log(products);
 
       products = products.flat();
-      console.log(products[1500]);
+      
+      products.forEach((element, index) => {
+        if (element.name === 'Carte Cadeau Montlimart') {
+          products.splice(index,1);
+        }
 
+      console.log(products[1500]);
+      fs.writeFileSync('products.json', JSON.stringify(products));
+      });
   } catch (e) {
     console.error(e);
   }}
