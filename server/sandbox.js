@@ -5,12 +5,15 @@ const dedicated_all = require('./sites/dedicated_all');
 const montlimart = require('./sites/montlimart');
 const adresse_paris = require('./sites/adresse_paris');
 const fs = require('fs');
+const db = require('./mongodb');
+const { insert } = require('./mongodb');
 
 //eshop = 'https://www.dedicatedbrand.com/en/loadfilter'
 //'https://adresse.paris/630-toute-la-collection?p=1'
 //'https://www.montlimart.com/toute-la-collection.html?p=2'
 async function sandbox () {
   try {
+    db.connect()
     let products = [];
     let pages = ['https://adresse.paris/630-toute-la-collection?p=1','https://adresse.paris/630-toute-la-collection?p=2'
     ];
@@ -52,7 +55,7 @@ async function sandbox () {
       console.log(`👕 ${results.length} products found`);
       products.push(results.flat());
       products = products.flat();
-      console.log(products);
+      //console.log(products);
 
       products = products.flat();
       
@@ -61,11 +64,15 @@ async function sandbox () {
           products.splice(index,1);
         }
 
-      console.log(products[1500]);
-      fs.writeFileSync('products.json', JSON.stringify(products));
+      //console.log(products[1500]);
+      //fs.writeFileSync('products.json', JSON.stringify(products));
+      
+      db.insert(products);
+      //db.close();
       });
   } catch (e) {
     console.error(e);
+    
   }}
 //const [,, eshop] = process.argv;
 
