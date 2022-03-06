@@ -7,13 +7,42 @@ const adresse_paris = require('./sites/adresse_paris');
 const fs = require('fs');
 const db = require('./mongodb');
 const { insert } = require('./mongodb');
+const { connect }=require('./mongodb');
+
+async function findbybrand(brand) { 
+  try {
+      
+      const bybrand = await  db.find({'brand':brand});
+      console.log(`total : ${bybrand.length}`);
+      console.log(bybrand);
+
+      return bybrand;
+  }
+  catch(error){
+      console.error(error);
+  return null;}
+}
+
+async function lessthanprice(price) { 
+  try {
+      
+      const lessthan = await  db.find({'price':{$lt:price}});
+      console.log(`total : ${lessthan.length}`);
+      console.log(lessthan);
+
+      return lessthan;
+  }
+  catch(error){
+      console.error(error);
+  return null;}
+}
 
 //eshop = 'https://www.dedicatedbrand.com/en/loadfilter'
 //'https://adresse.paris/630-toute-la-collection?p=1'
 //'https://www.montlimart.com/toute-la-collection.html?p=2'
 async function sandbox () {
   try {
-    db.connect()
+    await db.connect()
     let products = [];
     let pages = ['https://adresse.paris/630-toute-la-collection?p=1','https://adresse.paris/630-toute-la-collection?p=2'
     ];
@@ -62,14 +91,21 @@ async function sandbox () {
       products.forEach((element, index) => {
         if (element.name === 'Carte Cadeau Montlimart') {
           products.splice(index,1);
-        }
+        }})
 
       //console.log(products[1500]);
       //fs.writeFileSync('products.json', JSON.stringify(products));
       
-      db.insert(products);
+      //insertion
+      //await db.insert(products);
+      
       //db.close();
-      });
+      
+      //console.log(findbybrand('montlimart'));
+      //console.log(lessthanprice(100));
+      const sortByPrice = await db.sort();
+      console.log(sortByPrice);
+      ;
   } catch (e) {
     console.error(e);
     
