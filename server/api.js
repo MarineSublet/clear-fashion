@@ -32,9 +32,11 @@ app.get('/products/:search', async (request, response) => {
   var dict={}
   if(request.query.brand!=null) {dict["brand"]=request.query.brand}
   if(request.query.price!=null) {dict["price"]=parseInt(request.query.price)}
-  if(request.query.limit!=null) {dict["limit"]=parseInt(request.query.price)}
-  else {dict["limit"]=12}
-  response.send(await  db.find(dict));
+  if(request.query.limit!=null) {var limit=parseInt(request.query.limit)}
+  else {limit=12}
+  var result=await  db.find(dict)
+  result=result.slice(0,limit)
+  response.send(result);
   //{"brand":request.query.brand,"price":parseInt(request.query.price)}
 });
 
