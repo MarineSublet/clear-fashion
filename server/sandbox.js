@@ -13,9 +13,9 @@ async function findbybrand(brand) {
   try {
       
       const bybrand = await  db.find({'brand':brand});
-      console.log(`total : ${bybrand.length}`);
-      console.log(bybrand);
-
+      console.log(`total ${brand} : ${bybrand.length}`);
+      //console.log(bybrand);
+  //return null;
       return bybrand;
   }
   catch(error){
@@ -101,10 +101,12 @@ async function sandbox () {
       
       //db.close();
       
-      //console.log(findbybrand('montlimart'));
+      console.log(findbybrand('montlimart'));
+      console.log(findbybrand('adresse paris'));
+      console.log(findbybrand('dedicated'));
       //console.log(lessthanprice(100));
       const sortByPrice = await db.sort();
-      console.log(sortByPrice);
+      //console.log(sortByPrice);
       ;
   } catch (e) {
     console.error(e);
