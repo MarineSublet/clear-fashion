@@ -15,7 +15,7 @@ const parse = data => {
       const link = `https://www.dedicatedbrand.com${$(element)
         .find('.product-image')
         .attr('href')}`;
-      console.log(link)
+      
       return {
         link,
         'brand': 'montlimart',

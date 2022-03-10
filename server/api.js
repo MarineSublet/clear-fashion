@@ -2,6 +2,7 @@ const cors = require('cors');
 const express = require('express');
 const helmet = require('helmet');
 const db = require('./mongodb');
+const mongoose = require('mongoose');
 
 const PORT = 8092;
 
@@ -31,13 +32,18 @@ app.get('/products/:search', async (request, response) => {
   await db.connect();
   var dict={}
   if(request.query.brand!=null) {dict["brand"]=request.query.brand}
-  if(request.query.price!=null) {dict["price"]=parseInt(request.query.price)}
+  if(request.query.price!=null) {dict["price"]=parseFloat(request.query.price)}
   if(request.query.limit!=null) {var limit=parseInt(request.query.limit)}
+  
   else {limit=12}
-  var result=await  db.find(dict)
+  //dict["$orderby"]="{ price : -1 }";
+  
+  var result=await  db.find(dict)//.sort( { price: -1 } )
+  result.sort((a, b) => {
+    return a.price - b.price;})
   result=result.slice(0,limit)
   response.send(result);
-  //{"brand":request.query.brand,"price":parseInt(request.query.price)}
+  
 });
 
 app.get('/products/:id', async (request, response) => {
