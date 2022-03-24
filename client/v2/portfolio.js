@@ -65,8 +65,9 @@ const fetchProducts = async (page = 1, size = 12) => {
 
 function favourite(uuidtxt)
     {favouriteuuid.push(uuidtxt);
-      console.log("favouriteuuid")
-    console.log(favouriteuuid)
+      //console.log("favouriteuuid")
+    console.log(uuidtxt)
+    localStorage.setItem(uuidtxt,uuidtxt);
   }
 
 /**
@@ -263,17 +264,27 @@ if (buttonreasonable===true){products=reasonable(products)
   if (buttonfavourite===true)
 {
   favouriteuuid=[ ... new Set(favouriteuuid)]
-  favouritelist=[];
+  //favouritelist=[];
   favouriteuuid.forEach(element => {
     products.forEach(elemuuid=> {
       if (element==elemuuid._id)
-      {favouritelist.push(elemuuid);}
+      {favouritelist.push(elemuuid);
+      localStorage.setItem(elemuuid._id,JSON.stringify(elemuuid)
+      )
+      console.log("elem")
+      console.log(elemuuid)
+      }
     })  
   });
   favouritelist=[ ... new Set(favouritelist)]
-  console.log(favouritelist)
-  console.log(favouriteuuid)
+  //console.log(favouritelist)
+  //console.log(favouriteuuid)
   products=favouritelist;
+  //products=[];
+  //for (let i=0;i<favouritelist.length;i++)
+  //{products.push(localStorage.getItem(favouritelist[i]._id))}
+  console.log("products");
+  console.log(products);
   //renderProducts(products);
 }
 for (let step=0;step<products.length;step++)
