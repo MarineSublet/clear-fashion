@@ -65,7 +65,9 @@ const fetchProducts = async (page = 1, size = 12) => {
 
 function favourite(uuidtxt)
     {favouriteuuid.push(uuidtxt);
-    console.log(favouriteuuid)}
+      console.log("favouriteuuid")
+    console.log(favouriteuuid)
+  }
 
 /**
  * Render list of products
@@ -79,11 +81,11 @@ const renderProducts = products => {
   const template = products
     .map(product => {
       return `
-      <div class="product" id=${product.uuid}>
+      <div class="product" id=${product._id}>
         <span>${product.brand}</span>
         <a href="${product.link}" target="_blank">${product.name}</a>
         <span>${product.price}€</span>
-        <button class='buttonfilter2' onclick=favourite("${product.uuid}")>♥</button>
+        <button class='buttonfilter2' onclick=favourite("${product._id}")>♥</button>
       </div>
     `;
     })
@@ -264,7 +266,7 @@ if (buttonreasonable===true){products=reasonable(products)
   favouritelist=[];
   favouriteuuid.forEach(element => {
     products.forEach(elemuuid=> {
-      if (element==elemuuid.uuid)
+      if (element==elemuuid._id)
       {favouritelist.push(elemuuid);}
     })  
   });
@@ -391,6 +393,8 @@ else buttonfavourite=false;
   fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
     .then(setCurrentProducts)
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
+    console.log("favouritelist")
+    console.log(favouritelist)
 };}
 
 
