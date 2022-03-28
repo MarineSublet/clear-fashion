@@ -15,7 +15,10 @@ const parse = data => {
       const link = `https://www.loom.fr${$(element)
         .find('.product-title a')
         .attr('href')}`;
-
+      var rand=Math.floor(Math.random()*(3))
+      var rand2=Math.floor(Math.random()*(28))
+      var date=new Date(2022,rand,rand2)
+  
       return {
         link,
         'brand': 'loom',
@@ -32,7 +35,8 @@ const parse = data => {
         'photo': $(element)
           .find('noscript img.product_card__image')
           .attr('src'),
-        '_id': uuidv5(link, uuidv5.URL)
+        '_id': uuidv5(link, uuidv5.URL),
+        'released':date
       };
     })
     .get();

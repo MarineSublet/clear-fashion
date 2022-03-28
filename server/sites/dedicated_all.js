@@ -15,7 +15,10 @@ const parse = data => {
       const link = `https://www.dedicatedbrand.com/en/loadfilter?category=men?${$(element)
         .find('body')
         .attr('word-wrap: break-word; white-space: pre-wrap;')}`;
-        
+      
+        var rand=Math.floor(Math.random()*(3))
+        var rand2=Math.floor(Math.random()*28)
+        var date=new Date(2022,rand,rand2)
       return {
         link,
         'brand': 'dedicated',
@@ -23,6 +26,7 @@ const parse = data => {
           $(element)
             .find('.productList-price')
             .text()
+
         ),
         'name': $(element)
           .find('.productList-title')
@@ -31,7 +35,8 @@ const parse = data => {
           .replace(/\s/g, ' '),
         'photo': $(element)
           .find('.productList-image img').attr('data-src'),
-        '_id': uuidv5(link, uuidv5.URL)
+        '_id': uuidv5(link, uuidv5.URL),
+        'released':date
       };
     })
     .get();
@@ -45,7 +50,7 @@ const parse = data => {
 module.exports.scrape = async url => {
   try {
     const response = await fetch(url);
-
+    
     if (response.ok) {
       const body = await response.json();
       let final = [];
@@ -58,6 +63,7 @@ module.exports.scrape = async url => {
         name: element["name"],
         photo: element["image"][0],
         _id: uuidv5("https://www.dedicatedbrand.com/en/" + element["canonicalUri"], uuidv5.URL),
+        'released':new Date(element["price"]["saleStartDate"])
         
       })};
     });

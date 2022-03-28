@@ -73,6 +73,7 @@ async function sandbox () {
       let results = await montlimart.scrape(page);
 
       console.log(`👕 ${results.length} products found`);
+      //console.log(products)
       products.push(results.flat());
       
     }
@@ -93,7 +94,7 @@ async function sandbox () {
           products.splice(index,1);
         }})
 
-      //console.log(products[1500]);
+      console.log(products[1500]);
       //fs.writeFileSync('products.json', JSON.stringify(products));
       
       //insertion

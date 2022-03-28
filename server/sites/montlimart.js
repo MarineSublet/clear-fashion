@@ -15,7 +15,10 @@ const parse = data => {
       const link = $(element).parent()
         .find('.product-name a')
         .attr('href');
-        
+      var rand=Math.floor(Math.random()*(3))
+      var rand2=Math.floor(Math.random()*28)
+      var date=new Date(2022,rand,rand2)
+
       return {
         link,
         'brand': 'montlimart',
@@ -29,7 +32,8 @@ const parse = data => {
 
         'photo': $(element).parent().parent()
           .find('.product-image a img').attr('src'),
-        '_id': uuidv5(link, uuidv5.URL)
+        '_id': uuidv5(link, uuidv5.URL),
+        'released':date
       };
     })
     .get();
@@ -45,7 +49,9 @@ module.exports.scrape = async url => {
     const response = await fetch(url);
 
     if (response.ok) {
+      //console.log("here")
       const body = await response.text();
+      //console.log("done")
       return parse(body);
     }
 
