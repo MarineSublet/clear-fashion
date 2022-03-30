@@ -19,7 +19,7 @@ app.options('*', cors());
 app.get('/', (request, response) => {
   response.send({'ack': true});
 });
-/*
+
 app.get('/products', async (request, response) => {
   await db.connect();
   var prod= await db.find();
@@ -51,9 +51,9 @@ app.get('/products', async (request, response) => {
   
   response.send(dict);
 });
-*/
 
-app.get('/products/:search', async(request, response) => {
+
+app.get('/:search', async(request, response) => {
   
   await db.connect();
   var prod= await db.find();

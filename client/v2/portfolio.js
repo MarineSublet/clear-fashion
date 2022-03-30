@@ -4,8 +4,6 @@
 // current products on the page
 let currentProducts = [];
 let currentPagination = {};
-let favouriteuuid =[];
-let favouritelist=[];
 
 // instantiate the selectors
 const selectShow = document.querySelector('#show-select');
@@ -42,7 +40,7 @@ const fetchProducts = async (page = 1, size = 12) => {
     const response = await fetch(
       //`https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
       //`https://server-one-blond.vercel.app?page=${page}&size=${size}`
-      `https://server-ten-orcin.vercel.app/products/search?page=${page}&size=${size}`
+      `https://server-three-azure.vercel.app/search?page=${page}&size=${size}`
     );
     
     const body = await response.json();
@@ -66,7 +64,7 @@ async function fetchAllProducts() {
   try{
   const response = await fetch(
     // `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
-    `https://server-gules-theta.vercel.app/products`);
+    `https://server-three-azure.vercel.app/products`);
   const body = await response.json();
   return Promise.resolve(body.data.result);}
   catch(e) {
@@ -290,9 +288,10 @@ if (buttonreasonable===true){products=reasonable(products)
       {
         Object.keys(localStorage).forEach(function(key){
           console.log(key)
-          favouritelist.push(JSON.parse(localStorage.getItem(key)))})
+          if(key.startsWith('lscache')==false){
+          favouritelist.push(JSON.parse(localStorage.getItem(key)))}})
           favouritelist=[ ... new Set(favouritelist)]
-        };
+        }
 
 
   /*favouriteuuid.forEach(element => {
