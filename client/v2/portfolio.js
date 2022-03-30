@@ -62,12 +62,31 @@ const fetchProducts = async (page = 1, size = 12) => {
   }
 };
 
+async function fetchAllProducts() {
+  try{
+  const response = await fetch(
+    // `https://clear-fashion-api.vercel.app?page=${page}&size=${size}`
+    `https://server-gules-theta.vercel.app/products`);
+  const body = await response.json();
+  return Promise.resolve(body.data.result);}
+  catch(e) {
+    return null;
+  }
+}
 
-function favourite(uuidtxt)
-    {favouriteuuid.push(uuidtxt);
+async function favourite(uuidtxt)
+{
+    /*{favouriteuuid.push(uuidtxt);
       //console.log("favouriteuuid")
     console.log(uuidtxt)
-    localStorage.setItem(uuidtxt,uuidtxt);
+    localStorage.setItem(uuidtxt,uuidtxt);*/
+    let allprod= await fetchAllProducts();
+    allprod.forEach(element=> {
+        if (uuidtxt==element._id)
+        {
+          localStorage.setItem(element._id, (JSON.stringify(element)));
+        }
+      });
   }
 
 /**
@@ -83,6 +102,7 @@ const renderProducts = products => {
     .map(product => {
       return `
       <div class="product" id=${product._id}>
+        <img src="${product.photo}" alt="image produit" style="width:500px;height:600px;"/>
         <span>${product.brand}</span>
         <a href="${product.link}" target="_blank">${product.name}</a>
         <span>${product.price}€</span>
@@ -263,9 +283,19 @@ if (buttonreasonable===true){products=reasonable(products)
   }
   if (buttonfavourite===true)
 {
-  favouriteuuid=[ ... new Set(favouriteuuid)]
-  //favouritelist=[];
-  favouriteuuid.forEach(element => {
+  //favouriteuuid=[ ... new Set(favouriteuuid)]
+  
+  let favouritelist=[];
+  if(localStorage.length>0)
+      {
+        Object.keys(localStorage).forEach(function(key){
+          console.log(key)
+          favouritelist.push(JSON.parse(localStorage.getItem(key)))})
+          favouritelist=[ ... new Set(favouritelist)]
+        };
+
+
+  /*favouriteuuid.forEach(element => {
     products.forEach(elemuuid=> {
       if (element==elemuuid._id)
       {favouritelist.push(elemuuid);
@@ -275,8 +305,8 @@ if (buttonreasonable===true){products=reasonable(products)
       console.log(elemuuid)
       }
     })  
-  });
-  favouritelist=[ ... new Set(favouritelist)]
+  });*/
+  
   //console.log(favouritelist)
   //console.log(favouriteuuid)
   products=favouritelist;
@@ -396,6 +426,8 @@ else buttonreasonable=false;
     .then(() => render2(currentProducts, currentPagination,"No brand selected"));
 };}
 
+
+
 var buttonfavourite=false
 function filterfavourite()
 { if (buttonfavourite==false){buttonfavourite=true}
@@ -408,6 +440,14 @@ else buttonfavourite=false;
     console.log(favouritelist)
 };}
 
+function buttonDeleteFavourite()
+{ 
+  localStorage.clear();
+  {
+    fetchProducts(currentPagination.currentPage, parseInt(selectShow.value))
+      .then(setCurrentProducts)
+      .then(() => render2(currentProducts, currentPagination,"No brand selected"));
+  }}
 
 document.addEventListener('DOMContentLoaded', () =>
   fetchProducts()
@@ -429,3 +469,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   setCurrentProducts(products);
   render(currentProducts, currentPagination);
 });
+
+

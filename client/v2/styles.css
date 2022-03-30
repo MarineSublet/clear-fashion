@@ -1,5 +1,5 @@
 body {
-    color: #414141;               /* Dark gray */
+    color: #030303;               /* Dark gray */
     background-color: #eecba3;    /* Light green #90f7b3*/
 
     
@@ -55,9 +55,9 @@ h1, h2, h3, h4, h5, h6 {
   .product{
     overflow: hidden;
     float: left;
-  width: 31%;
+  width: 30%;
   margin: 25px 1.15%;
-  height: 50px;
+  /*height: 500px;*/
   }
 
   .selector {
@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
   .buttonfilter:hover,
 .buttonfilter:visited:hover {
     color: rgb(0, 0, 0);
-    background-color: #dbb48b;    /* green */
+    background-color: #dbb48b;    /* light orange */
     font-weight: bold;
     padding-top: 8px;
     padding-bottom: 8px;
